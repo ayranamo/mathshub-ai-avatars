@@ -1,8 +1,10 @@
 # app.py
 import streamlit as st
+from streamlit.components.v1 import html
 import requests
 import time
 import os
+
 
 # Attempt to retrieve API keys from environment variables
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else None
@@ -20,26 +22,45 @@ def send_request_with_backoff(url, headers, data, retries=5, backoff_in_seconds=
 
 # Use the modified request function in your OpenAI request
 def translate_text(text, source_language, target_language):
-    """Translate text from source to target language using OpenAI's Chat Completions API."""
+    """Translate text from source to target language using OpenAI's GPT-3.5 Turbo."""
     headers = {'Authorization': f'Bearer {OPENAI_API_KEY}'}
-    prompt = f"Translate the following text from {source_language} to {target_language}:\n\n{text}"
+    # Adjust the structure for the chat API
     data = {
-        "model": "text-davinci-003",
-        "prompt": prompt,
+        "model": "gpt-3.5-turbo",  # Model identifier for GPT-3.5 Turbo
+        "messages": [
+            {"role": "system", "content": f"Translate the following text from {source_language} to {target_language}:"},
+            {"role": "user", "content": text}
+        ],
         "temperature": 0.3,
         "max_tokens": 1024,
     }
-    response = send_request_with_backoff('https://api.openai.com/v1/completions', headers, data)
+    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
     if response.status_code == 200:
-        latest_response = response.json()['choices'][0]['text'].strip()
+        # Parse the response to extract the translated text
+        latest_response = response.json()['choices'][0]['message']['content'].strip()  # Adjusted to access 'message' and 'content'
         return latest_response
     else:
+        # Handle errors with Streamlit if this is part of a Streamlit app
         st.error(f"Request failed with status code: {response.status_code}")
         return None
 
-def create_video(script_text, avatar, background, language="en-US"):
+def convert_language_code(lang_code):
+    # Updated mapping with English and Arabic examples
+    mapping = {
+        "en-EN": "en-US",  # Incorrect format to correct format for English
+        "en-GB": "en-US",  # British English to US English (if you decide to standardize on US English)
+        "ar-AR": "ar-SA",  # Example incorrect format to correct format for Arabic
+        # "ar-SA": "ar-SA",  # Not needed since "ar-SA" is already correct, but here for clarity
+        # Add more mappings as needed
+    }
+    # Return the corrected code if it exists in the mapping, else return the original
+    return mapping.get(lang_code, lang_code)
+
+
+def create_video(script_text, avatar, background, language):
     """Create a video using the Synthesia API."""
     headers = {'Authorization': f'Token {SYNTHESIA_API_KEY}'}
+    corrected_language = convert_language_code(language)
     data = {
         "test": True,
         "input": [{
@@ -47,7 +68,7 @@ def create_video(script_text, avatar, background, language="en-US"):
             "avatar": avatar,
             "background": background,
             "avatarSettings": {
-                "voice": language,
+                "voice": corrected_language,
                 "style": "rectangular",
             },
         }]
@@ -78,25 +99,52 @@ st.set_page_config(page_title="Mathshub AI Avatar for Building Content", page_ic
 # Logo and title with GitHub link
 logo_url = "https://static.tildacdn.com/tild3433-6132-4833-a666-323830396132/Logo.svg"
 st.markdown(f"<img src='{logo_url}' alt='Mathshub logo' style='height: 50px;'>", unsafe_allow_html=True)
+
 st.markdown("# Mathshub AI Avatar for Building Content")
 st.markdown("Check our [GitHub repository](https://github.com/ayranamo/mathshub-ai-avatars) for more information and updates.")
-st.markdown("_Hello everyone, and welcome to the exciting world of Python programming! Python is known for its simplicity and versatility, making it a great choice for beginners and professionals alike. The first step in your Python journey is installing Python on your computer. Once installed, you can write your first line of code: print(\"Hello, world!\"). This simple command tells Python to display the message 'Hello, world!' on your screen._")
+st.markdown("_Example video for translation: Hello everyone, and welcome to the exciting world of Python programming! Python is known for its simplicity and versatility, making it a great choice for beginners and professionals alike. The first step in your Python journey is installing Python on your computer. Once installed, you can write your first line of code: print(\"Hello, world!\"). This simple command tells Python to display the message 'Hello, world!' on your screen._")
 
-# Embedding YouTube video vertically on the left side with equal padding from the left and upper sides
-video_iframe = """
-<div style="position: fixed; top: 80px; left: 20px; width: 300px; height: calc(100vh - 80px); padding: 20px;">
-    <iframe width="100%" height="100%" 
-        src="https://www.youtube-nocookie.com/embed/Bp15OxS3PwI?si=bLOEqUGUNzDyYb9N" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen>
-    </iframe>
+# This CSS makes the video responsive and tries to keep it at the top left with padding.
+# Note: This will not dynamically change the position from top to left based on viewport as traditional media queries would.
+video_html = """
+<style>
+.video-wrapper {
+    padding-top: 20px; /* Top padding */
+    display: flex;
+    justify-content: flex-start; /* Align to the left side */
+    align-items: flex-start; /* Align to the top */
+}
+
+.responsive-iframe-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56%; /* 4:3 Aspect Ratio for horizontal videos */
+    /* For vertical videos, use 177.77% to represent a 9:16 aspect ratio */
+    width: 100%;
+}
+
+.responsive-iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+</style>
+
+<div class="video-wrapper">
+    <div class="responsive-iframe-container">
+        <iframe
+            src="https://www.youtube-nocookie.com/embed/Bp15OxS3PwI?rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
 </div>
 """
-
-# Add the new code snippet to the existing code
-st.markdown(video_iframe, unsafe_allow_html=True)
+# Use the html() function to render the responsive vertical video iframe in your Streamlit app
+html(video_html, height=400)
 
 # Select language and show example text
 source_language = st.selectbox("Select Source Language", ["English", "Arabic", "Bahasa"], index=0)

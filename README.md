@@ -3,7 +3,7 @@
 ### Content example in Arabic:
 [![Video Title](http://img.youtube.com/vi/Bp15OxS3PwI/0.jpg)](http://www.youtube.com/watch?v=Bp15OxS3PwI)
 
-Powered by Open AI API, HeyGen API (not accessible through the application)
+Powered by Open AI API, HeyGen API and subtitle adding libraries (not accessible through the application)
 
 ### Learn More:
 Visit our website at [mathshub.education](https://maths-h.com) to explore how Mathshub AI Avatars is transforming programming education worldwide!

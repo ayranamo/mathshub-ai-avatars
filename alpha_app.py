@@ -5,8 +5,8 @@ import time
 import os
 
 # Set environment variables
-os.environ['OPENAI_API_KEY'] = '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'  # Replace with your actual OpenAI API key
-os.environ['SYNTHESIA_API_KEY'] = '2ebd5e0f29d01f2861cb730159957218'  # Replace with your actual Synthesia API key
+os.environ['OPENAI_API_KEY'] = ''  # Replace with your actual OpenAI API key
+os.environ['SYNTHESIA_API_KEY'] = ''  # Replace with your actual Synthesia API key
 
 # Retrieve API keys
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')

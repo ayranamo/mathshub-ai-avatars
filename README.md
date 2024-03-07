@@ -3,6 +3,8 @@
 ### Example content in Arabic:
 [![Video Title](http://img.youtube.com/vi/Bp15OxS3PwI/0.jpg)](http://www.youtube.com/watch?v=Bp15OxS3PwI)
 
+Streamlit app: https://ai-avatars.streamlit.app/
+
 ### Description:
 Mathshub AI Avatars is a cutting-edge platform designed to empower individuals worldwide to excel in programming education. Our platform is built on the principle of inclusivity, aiming to break down language barriers and provide learners with access to high-quality programming resources in their native languages. With Mathshub AI Avatars, we're revolutionizing the way programming education is delivered, making it accessible, engaging, and effective for learners of all backgrounds.
 

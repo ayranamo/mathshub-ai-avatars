@@ -2,7 +2,7 @@
 
 ### Example content in Arabic:
 <div style="text-align:center;">
-    [![Video Title](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+    [![Video Title](http://img.youtube.com/vi/Bp15OxS3PwI/0.jpg)](http://www.youtube.com/watch?v=Bp15OxS3PwI)
 </div>
 
 ### Description:

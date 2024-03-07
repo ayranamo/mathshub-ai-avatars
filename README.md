@@ -1,5 +1,6 @@
 ## Mathshub AI Avatars: Empowering Global Programming Education
 
+<!-- Embedding YouTube video -->
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Bp15OxS3PwI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 
 ### Description:

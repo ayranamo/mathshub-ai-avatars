@@ -2,6 +2,7 @@
 
 ### Content example in Arabic:
 [![Video Title](http://img.youtube.com/vi/Bp15OxS3PwI/0.jpg)](http://www.youtube.com/watch?v=Bp15OxS3PwI)
+
 Powered by Open AI API, HeyGen API (not accessible through the application)
 
 ### Learn More:

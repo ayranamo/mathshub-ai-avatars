@@ -23,3 +23,44 @@ Mathshub AI Avatars is more than just a platform—it's a movement towards a mor
 
 ### Learn More:
 Visit our website at [mathshub.education](https://mathshub.education) to explore how Mathshub AI Avatars is transforming programming education worldwide!
+
+
+## Demo and source description:
+This script combines the functionality of text translation and video creation using external APIs and presents them in an interactive web application using Streamlit.
+
+### Imports
+- **streamlit:** The Streamlit library for building interactive web applications.
+- **requests:** Library for making HTTP requests.
+- **time:** Module for time-related functions.
+- **os:** Module for interacting with the operating system, used here for setting environment variables.
+
+### Environment Variables
+The script sets environment variables for the OpenAI API key (`OPENAI_API_KEY`) and the Synthesia API key (`SYNTHESIA_API_KEY`) using `os.environ`.
+
+### Helper Functions
+- **send_request_with_backoff:** Function for making HTTP requests with exponential backoff. It retries requests when encountering rate limiting (status code 429).
+- **translate_text:** Function for translating text from a source language to a target language using OpenAI's Chat Completions API.
+- **create_video:** Function for creating a video using the Synthesia API. It takes input text, avatar, background, and language settings.
+
+### Page Configuration
+- Sets the title and icon for the Streamlit app using `st.set_page_config`.
+- Displays the logo and title of the application along with a link to the GitHub repository.
+
+### YouTube Video Embed
+- Embeds a YouTube video vertically on the left side of the application with equal padding from the left and upper sides. The video is embedded using an iframe HTML element within a Markdown string.
+
+### Translation and Video Creation Inputs
+- Provides dropdowns for selecting source and target languages, text areas for inputting text, and dropdowns for selecting avatar and background settings.
+- Includes a button for triggering translation and video creation.
+
+### Translation and Video Creation Logic
+- Translates input text to the target language using the `translate_text` function.
+- Creates a video from the translated text using the `create_video` function.
+- Displays the success message and the video if the creation is successful, or an error message otherwise.
+
+## For More Information
+Check our [GitHub repository](https://github.com/ayranamo/mathshub-ai-avatars) for more information and updates.
+
+## Example Usage
+To see the script in action, you can run the `app.py` file and interact with the Streamlit application.
+

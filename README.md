@@ -66,3 +66,63 @@ Check our [GitHub repository](https://github.com/ayranamo/mathshub-ai-avatars) f
 ## Example Usage
 To see the script in action, you can run the `app.py` file and interact with the Streamlit application.
 
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Python 3.9 or newer installed on your machine. Visit \[python.org\](https://www.python.org/downloads/) for download and installation instructions.
+
+## Installation
+
+Follow these steps to get your development environment set up:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your_username/your_project_name.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd your_project_name
+   ```
+3. (Optional) Create a virtual environment to manage dependencies:
+   - For Unix/macOS:
+     ```bash
+     python3 -m venv venv
+     source venv/bin/activate
+     ```
+   - For Windows:
+     ```bash
+     py -m venv venv
+     .\venv\Scripts\activate
+     ```
+4. Install the required packages:
+   ```bash
+   pip install streamlit requests
+   ```
+
+## Running the Application
+
+To run the Streamlit app, execute the following command from the root directory of the project:
+
+```bash
+streamlit run app.py
+```
+
+After running the command, Streamlit will start a web server and print a URL to the console, typically \`http://localhost:8501\`, where you can view the app in your web browser.
+
+## Contributing
+
+We welcome contributions! To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: \`git checkout -b name_for_new_branch\`.
+3. Make changes and test.
+4. Submit a Pull Request with a comprehensive description of changes.
+
+## Contact
+
+If you want to contact me, you can reach me at \`aira@maths-h.com\`.
+
+## License
+
+This project is licensed under the \[MIT License\](LICENSE.txt). See the LICENSE file for details.

@@ -22,7 +22,7 @@ Mathshub AI Avatars is a cutting-edge platform designed to empower individuals w
 Mathshub AI Avatars is more than just a platform—it's a movement towards a more inclusive, accessible, and effective approach to programming education. Whether you're an educator passionate about empowering learners or a developer eager to make a difference, we invite you to join us on this journey. Together, let's unlock the world of coding for everyone, regardless of language or background.
 
 ### Learn More:
-Visit our website at [mathshub.education](https://mathshub.education) to explore how Mathshub AI Avatars is transforming programming education worldwide!
+Visit our website at [mathshub.education](https://maths-h.com) to explore how Mathshub AI Avatars is transforming programming education worldwide!
 
 
 ## Demo and source description:
